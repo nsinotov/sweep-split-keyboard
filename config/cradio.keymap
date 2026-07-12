@@ -1,0 +1,216 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/mouse.h>
+
+#define BASE   0
+#define SYM    1
+#define NAV    2
+#define NUM    3
+#define MOUSE  4
+#define SCROLL 5
+#define FUN    6
+
+#define U_MOUSE_MOVE_UP    0x0000FA24 /* MOVE_Y(-1500) */
+#define U_MOUSE_MOVE_DOWN  0x000005DC /* MOVE_Y(1500)  */
+#define U_MOUSE_MOVE_LEFT  0xFA240000 /* MOVE_X(-1500) */
+#define U_MOUSE_MOVE_RIGHT 0x05DC0000 /* MOVE_X(1500)  */
+#define U_MOUSE_SCRL_UP    0x00000016 /* SCRL_Y(22)    */
+#define U_MOUSE_SCRL_DOWN  0x0000FFEA /* SCRL_Y(-22)   */
+#define U_MOUSE_SCRL_LEFT  0xFFEA0000 /* SCRL_X(-22)   */
+#define U_MOUSE_SCRL_RIGHT 0x00160000 /* SCRL_X(22)    */
+
+&sk { ignore-modifiers; };
+&mmv { acceleration-exponent = <1>; time-to-max-speed-ms = <300>; delay-ms = <0>; };
+&msc { acceleration-exponent = <1>; time-to-max-speed-ms = <150>; delay-ms = <0>; };
+
+/ {
+    behaviors {
+        hml: homerow_mods_left {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <220>;
+            quick-tap-ms = <150>;
+            require-prior-idle-ms = <200>;
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 30 31 32 33>;
+            hold-trigger-on-release;
+        };
+
+        hml_shift: homerow_shift_left {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <220>;
+            quick-tap-ms = <150>;
+            require-prior-idle-ms = <125>;
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 30 31 32 33>;
+            hold-trigger-on-release;
+        };
+
+        hmr: homerow_mods_right {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <220>;
+            quick-tap-ms = <150>;
+            require-prior-idle-ms = <200>;
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 30 31 32 33>;
+            hold-trigger-on-release;
+        };
+
+        hmr_shift: homerow_shift_right {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <220>;
+            quick-tap-ms = <150>;
+            require-prior-idle-ms = <125>;
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 30 31 32 33>;
+            hold-trigger-on-release;
+        };
+
+        hyp: hyper_mods {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <220>;
+            quick-tap-ms = <150>;
+            require-prior-idle-ms = <200>;
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <0 1 2 3 4 5 6 7 8 9 10 11 12 13 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33>;
+            hold-trigger-on-release;
+        };
+
+        lt_repeat: layer_tap_repeat {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            bindings = <&mo>, <&kp>;
+        };
+    };
+
+    macros {
+        unstick: unstick {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&kp LSHIFT &kp RSHIFT
+                 &kp LCTRL  &kp RCTRL
+                 &kp LALT   &kp RALT
+                 &kp LGUI   &kp RGUI>;
+        };
+
+        paste: paste {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LGUI>, <&macro_tap &kp V>, <&macro_release &kp LGUI>;
+        };
+
+        copy: copy {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LGUI>, <&macro_tap &kp C>, <&macro_release &kp LGUI>;
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+
+        combo_esc {
+            bindings = <&kp ESC>;
+            key-positions = <17 18>;
+            layers = <BASE>;
+            timeout-ms = <50>;
+        };
+
+        combo_esc_sd {
+            bindings = <&kp ESC>;
+            key-positions = <11 12>;
+            layers = <BASE MOUSE>;
+            timeout-ms = <50>;
+        };
+    };
+
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+
+        fun_layer_trigger {
+            if-layers = <NAV MOUSE>;
+            then-layer = <FUN>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        BASE {
+            bindings = <
+                &kp Q       &kp W       &kp E            &kp R       &kp T                          &kp Y                          &kp U       &kp I            &kp O       &kp P
+                &hml LALT A &hml LCTRL S &hml_shift LSHIFT D &hml LGUI F &hyp LC(LS(LA(LGUI))) G    &hyp LC(LS(LA(RGUI))) H        &hmr RGUI J &hmr_shift RSHIFT K &hmr RCTRL L &hmr RALT SEMI
+                &kp Z       &kp X       &kp C            &kp V       &kp B                          &kp N                          &kp M       &kp COMMA        &kp DOT     &kp FSLH
+                                                          &lt_repeat SYM TAB &lt_repeat NAV SPACE    &lt_repeat MOUSE RET           &lt_repeat NUM BSPC
+            >;
+        };
+
+        SYM {
+            bindings = <
+                &kp EXCL      &kp AT           &kp HASH           &kp DLLR      &kp PRCNT    &kp CARET &kp AMPS        &kp ASTRK          &kp LPAR        &kp RPAR
+                &hml LALT DOT &hml LCTRL COMMA &hml_shift LSHIFT DQT &hml LGUI SQT &kp PIPE &kp MINUS &hmr RGUI EQUAL &hmr_shift RSHIFT GRAVE &hmr RCTRL LBKT &hmr RALT RBKT
+                &kp QMARK     &kp FSLH         &kp LT             &kp GT        &kp BSLH     &kp UNDER &kp PLUS        &kp TILDE          &kp LBKT        &kp RBKT
+                                                                   &none         &none        &none     &none
+            >;
+        };
+
+        NAV {
+            bindings = <
+                &none    &none     &kp CAPS  &caps_word    &none     &kp HOME &kp PG_DN &kp PG_UP &kp END   &trans
+                &kp LALT &kp LCTRL &kp LSHIFT &kp LGUI    &none     &kp LEFT &kp DOWN  &kp UP    &kp RIGHT &trans
+                &none    &none     &copy     &paste        &none     &none    &none     &none     &none     &trans
+                                              &none        &none     &trans   &kp DEL
+            >;
+        };
+
+        NUM {
+            bindings = <
+                &kp F1       &kp F2        &kp F3               &kp F4       &kp F5     &kp F6 &kp F7       &kp F8               &kp F9        &kp F10
+                &hml LALT N1 &hml LCTRL N2 &hml_shift LSHIFT N3 &hml LGUI N4 &kp N5     &kp N6 &hmr RGUI N7 &hmr_shift RSHIFT N8 &hmr RCTRL N9 &hmr RALT N0
+                &kp F11      &none         &none                &none        &none      &none  &none        &none                &none         &kp F12
+                                                                &none        &none      &none  &none
+            >;
+        };
+
+        MOUSE {
+            bindings = <
+                &none    &none     &none      &none    &none        &none &none                  &mmv U_MOUSE_MOVE_UP   &none                   &none
+                &kp LALT &kp LCTRL &kp LSHIFT &kp LGUI &mo SCROLL  &none &mmv U_MOUSE_MOVE_LEFT &mmv U_MOUSE_MOVE_DOWN &mmv U_MOUSE_MOVE_RIGHT &none
+                &none    &none     &none      &none    &none        &none &none                  &none                  &none                   &none
+                                               &mkp RCLK &mkp LCLK &trans &none
+            >;
+        };
+
+        SCROLL {
+            bindings = <
+                &trans &trans &trans &trans &trans    &trans &trans                  &msc U_MOUSE_SCRL_UP   &trans                   &trans
+                &trans &trans &trans &trans &trans    &trans &msc U_MOUSE_SCRL_LEFT &msc U_MOUSE_SCRL_DOWN &msc U_MOUSE_SCRL_RIGHT &trans
+                &trans &trans &trans &trans &trans    &trans &trans                  &trans                  &trans                   &trans
+                                     &trans &trans    &trans &trans
+            >;
+        };
+
+        FUN {
+            bindings = <
+                &bt BT_SEL 0 &none &kp C_PREV   &kp C_NEXT   &kp C_PP     &bt BT_SEL 3 &none &none &unstick &sys_reset
+                &bt BT_SEL 1 &none &kp C_VOL_DN &kp C_VOL_UP &kp C_MUTE   &bt BT_SEL 4 &none &none &none    &bootloader
+                &bt BT_SEL 2 &none &kp C_BRI_DN &kp C_BRI_UP &none        &bt BT_SEL 5 &none &none &none    &bt BT_CLR
+                                                &none        &none        &none        &none
+            >;
+        };
+    };
+};

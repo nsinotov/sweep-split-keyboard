@@ -1,0 +1,14 @@
+firmware/*.uf2
+build/
+
+# West/ZMK build dependencies
+.west/
+modules/
+optional/
+zephyr/
+zmk/
+
+.DS_Store
+Thumbs.db
+*.swp
+*~
