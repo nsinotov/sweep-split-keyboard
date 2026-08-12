@@ -47,7 +47,7 @@ ZMK firmware with Bluetooth connectivity. The firmware is built automatically vi
 
 ### Keymap
 
-7 layers with home row mods, mouse keys, and a conditional function layer.
+7 layers with home row mods, mouse keys, and a function layer.
 
 ```
 BASE (QWERTY + home row mods)
@@ -66,9 +66,9 @@ SYM (symbols)
 ┌─────┬─────┬─────┬─────┬─────┐   ┌─────┬─────┬─────┬─────┬─────┐
 │  !  │  @  │  #  │  $  │  %  │   │  ^  │  &  │  *  │  (  │  )  │
 ├─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┤
-│ALT/.│CTL/,│SFT/"│GUI/'│  |  │   │  -  │GUI/=│SFT/`│CTL/[│ALT/]│
+│ALT/<│CTL/>│SFT/`│GUI/'│  \  │   │  -  │GUI/=│SFT/;│CTL/[│ALT/]│
 ├─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┤
-│  ?  │  /  │  <  │  >  │  \  │   │  _  │  +  │  ~  │  [  │  ]  │
+│  ?  │  /  │  ~  │  "  │  |  │   │  _  │  +  │  :  │  {  │  }  │
 └─────┴─────┴─────┼─────┼─────┤   ├─────┼─────┼─────┴─────┴─────┘
                   │     │     │   │     │     │
                   └─────┴─────┘   └─────┴─────┘
@@ -81,7 +81,7 @@ NAV (navigation)
 ├─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┤
 │     │     │COPY │PASTE│     │   │     │     │     │     │     │
 └─────┴─────┴─────┼─────┼─────┤   ├─────┼─────┼─────┴─────┴─────┘
-                  │     │     │   │     │ DEL │
+                  │     │     │   │ FUN │ DEL │
                   └─────┴─────┘   └─────┴─────┘
 
 NUM (numbers + function keys)
@@ -106,7 +106,7 @@ MOUSE (mouse movement — right hand IJKL style)
                   │RCLK │LCLK │   │     │     │
                   └─────┴─────┘   └─────┴─────┘
 
-FUN (conditional: NAV + MOUSE held simultaneously)
+FUN (hold ENTER on NAV layer)
 ┌─────┬─────┬─────┬─────┬─────┐   ┌─────┬─────┬─────┬─────┬─────┐
 │ BT0 │     │PREV │NEXT │PLAY │   │ BT3 │     │     │USTCK│RESET│
 ├─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┤
@@ -130,7 +130,7 @@ FUN (conditional: NAV + MOUSE held simultaneously)
 - **Home row mods** with bilateral hold-trigger (left mods trigger on right-hand keys and vice versa)
 - **Hyper key** (Ctrl+Shift+Alt+GUI) on G and H
 - **Mouse keys** with movement and scroll layers
-- **Conditional FUN layer** activates when NAV + MOUSE are held together
+- **FUN layer** accessed by holding ENTER while on NAV layer (SPACE → ENTER)
 - **Key repeat** on double-tap of any thumb key
 - **Deep sleep** after 30 minutes of inactivity
 - **Bluetooth** with +8 dBm TX power for extended range
@@ -159,29 +159,6 @@ Push to the repository and GitHub Actions will build the firmware automatically.
 5. Repeat for the other half
 
 To clear Bluetooth bonds, flash `settings_reset.uf2` to both halves first.
-
-## Repository Structure
-
-```
-.
-├── .github/workflows/  # GitHub Actions CI
-│   └── build.yml
-├── case/               # 3D-printable case files
-│   ├── sweep_case.py       # CadQuery source (generates optimal STL)
-│   ├── sweep_case.scad     # OpenSCAD source
-│   ├── sweep_case_bottom.stl
-│   └── sweep_case_top.stl
-├── config/             # ZMK firmware configuration
-│   ├── cradio.conf
-│   ├── cradio.json
-│   ├── cradio.keymap
-│   └── west.yml
-├── firmware/           # Built .uf2 files (local builds)
-├── gallery/            # Build photos (1-6: build stages, 7: final)
-├── build.sh
-├── build.yaml
-└── README.md
-```
 
 ## References
 

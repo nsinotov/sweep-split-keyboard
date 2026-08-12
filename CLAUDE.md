@@ -21,8 +21,9 @@ Wireless 34-key split keyboard project: Sweep Bling MX PCB + nice!nano v2 + ZMK 
 ## Keymap
 
 7 layers: BASE (QWERTY + home row mods), SYM, NAV, NUM, MOUSE, SCROLL, FUN.
-FUN is a conditional layer activated by holding NAV + MOUSE simultaneously.
+FUN is accessed by holding ENTER while on NAV layer (SPACE → ENTER).
 Home row mods use bilateral trigger (left-hand mods only trigger on right-hand key presses and vice versa).
+SYM layer uses shifted-pair column pattern: middle row = base symbol, bottom row = shifted version (e.g. -/_, =/+, ;/:, [/{, ]/}, `/~, '/', \/|).
 
 ## Hardware Notes
 
