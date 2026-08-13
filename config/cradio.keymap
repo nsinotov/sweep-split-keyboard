@@ -144,7 +144,7 @@
         BASE {
             bindings = <
                 &kp Q       &kp W       &kp E            &kp R       &kp T                          &kp Y                          &kp U       &kp I            &kp O       &kp P
-                &hml LALT A &hml LCTRL S &hml_shift LSHIFT D &hml LGUI F &hyp LC(LS(LA(LGUI))) G    &hyp LC(LS(LA(RGUI))) H        &hmr RGUI J &hmr_shift RSHIFT K &hmr RCTRL L &hmr RALT SEMI
+                &hml LALT A &hml_shift LSHIFT S &hml LCTRL D &hml LGUI F &hyp LC(LS(LA(LGUI))) G    &hyp LC(LS(LA(RGUI))) H        &hmr RGUI J &hmr RCTRL K &hmr_shift RSHIFT L &hmr RALT SEMI
                 &kp Z       &kp X       &kp C            &kp V       &kp B                          &kp N                          &kp M       &kp COMMA        &kp DOT     &kp FSLH
                                                           &lt_repeat SYM TAB &lt_repeat NAV SPACE    &lt_repeat MOUSE RET           &lt_repeat NUM BSPC
             >;
@@ -153,7 +153,7 @@
         SYM {
             bindings = <
                 &kp EXCL      &kp AT           &kp HASH           &kp DLLR      &kp PRCNT    &kp CARET &kp AMPS        &kp ASTRK          &kp LPAR        &kp RPAR
-                &hml LALT LT  &hml LCTRL GT    &hml_shift LSHIFT GRAVE &hml LGUI SQT &kp BSLH &kp MINUS &hmr RGUI EQUAL &hmr_shift RSHIFT SEMI  &hmr RCTRL LBKT &hmr RALT RBKT
+                &hml LALT LT  &hml_shift LSHIFT GT    &hml LCTRL GRAVE &hml LGUI SQT &kp BSLH &kp MINUS &hmr RGUI EQUAL &hmr RCTRL SEMI  &hmr_shift RSHIFT LBKT &hmr RALT RBKT
                 &kp QMARK     &kp FSLH         &kp TILDE          &kp DQT       &kp PIPE     &kp UNDER &kp PLUS        &kp COLON          &kp LBRC        &kp RBRC
                                                                    &none         &none        &none     &none
             >;
@@ -162,7 +162,7 @@
         NAV {
             bindings = <
                 &none    &none     &kp CAPS  &caps_word    &none     &kp HOME &kp PG_DN &kp PG_UP &kp END   &trans
-                &kp LALT &kp LCTRL &kp LSHIFT &kp LGUI    &none     &kp LEFT &kp DOWN  &kp UP    &kp RIGHT &trans
+                &kp LALT &kp LSHIFT &kp LCTRL &kp LGUI    &none     &kp LEFT &kp DOWN  &kp UP    &kp RIGHT &trans
                 &none    &none     &copy     &paste        &none     &none    &none     &none     &none     &trans
                                               &none        &none     &mo FUN  &kp DEL
             >;
@@ -171,7 +171,7 @@
         NUM {
             bindings = <
                 &kp F1       &kp F2        &kp F3               &kp F4       &kp F5     &kp F6 &kp F7       &kp F8               &kp F9        &kp F10
-                &hml LALT N1 &hml LCTRL N2 &hml_shift LSHIFT N3 &hml LGUI N4 &kp N5     &kp N6 &hmr RGUI N7 &hmr_shift RSHIFT N8 &hmr RCTRL N9 &hmr RALT N0
+                &hml LALT N1 &hml_shift LSHIFT N2 &hml LCTRL N3 &hml LGUI N4 &kp N5     &kp N6 &hmr RGUI N7 &hmr RCTRL N8 &hmr_shift RSHIFT N9 &hmr RALT N0
                 &kp F11      &none         &none                &none        &none      &none  &none        &none                &none         &kp F12
                                                                 &none        &none      &none  &none
             >;
@@ -180,7 +180,7 @@
         MOUSE {
             bindings = <
                 &none    &none     &none      &none    &none        &none &none                  &mmv U_MOUSE_MOVE_UP   &none                   &none
-                &kp LALT &kp LCTRL &kp LSHIFT &kp LGUI &mo SCROLL  &none &mmv U_MOUSE_MOVE_LEFT &mmv U_MOUSE_MOVE_DOWN &mmv U_MOUSE_MOVE_RIGHT &none
+                &kp LALT &kp LSHIFT &kp LCTRL &kp LGUI &mo SCROLL  &none &mmv U_MOUSE_MOVE_LEFT &mmv U_MOUSE_MOVE_DOWN &mmv U_MOUSE_MOVE_RIGHT &none
                 &none    &none     &none      &none    &none        &none &none                  &none                  &none                   &none
                                                &mkp RCLK &mkp LCLK &trans &none
             >;
