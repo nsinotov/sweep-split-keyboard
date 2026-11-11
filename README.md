@@ -47,14 +47,14 @@ ZMK firmware with Bluetooth connectivity. The firmware is built automatically vi
 
 ### Keymap
 
-7 layers with home row mods, mouse keys, and a function layer.
+7 layers with home row mods, mouse keys, and a function layer, plus a macOS / Windows-Linux toggle (see [OS Mode](#os-mode)).
 
 ```
 BASE (QWERTY + home row mods)
 ┌─────┬─────┬─────┬─────┬─────┐   ┌─────┬─────┬─────┬─────┬─────┐
 │  Q  │  W  │  E  │  R  │  T  │   │  Y  │  U  │  I  │  O  │  P  │
 ├─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┤
-│ALT/A│SFT/S│CTL/D│GUI/F│HYP/G│   │HYP/H│GUI/J│CTL/K│SFT/L│ALT/;│
+│ ⌥/A │ ⇧/S │ ⌃/D │ ⌘/F │HYP/G│   │HYP/H│ ⌘/J │ ⌃/K │ ⇧/L │ ⌥/; │
 ├─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┤
 │  Z  │  X  │  C  │  V  │  B  │   │  N  │  M  │  ,  │  .  │  /  │
 └─────┴─────┴─────┼─────┼─────┤   ├─────┼─────┼─────┴─────┴─────┘
@@ -66,7 +66,7 @@ SYM (symbols)
 ┌─────┬─────┬─────┬─────┬─────┐   ┌─────┬─────┬─────┬─────┬─────┐
 │  !  │  @  │  #  │  $  │  %  │   │  ^  │  &  │  *  │  (  │  )  │
 ├─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┤
-│ALT/<│SFT/>│CTL/`│GUI/'│  \  │   │  -  │GUI/=│CTL/;│SFT/[│ALT/]│
+│ ⌥/< │ ⇧/> │ ⌃/` │ ⌘/' │  \  │   │  -  │ ⌘/= │ ⌃/; │ ⇧/[ │ ⌥/] │
 ├─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┤
 │  ?  │  /  │  ~  │  "  │  |  │   │  _  │  +  │  :  │  {  │  }  │
 └─────┴─────┴─────┼─────┼─────┤   ├─────┼─────┼─────┴─────┴─────┘
@@ -77,7 +77,7 @@ NAV (navigation)
 ┌─────┬─────┬─────┬─────┬─────┐   ┌─────┬─────┬─────┬─────┬─────┐
 │     │     │CAPS │CAPWD│     │   │HOME │PG_DN│PG_UP│ END │     │
 ├─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┤
-│ ALT │ SFT │ CTL │ GUI │     │   │  ←  │  ↓  │  ↑  │  →  │     │
+│  ⌥  │  ⇧  │  ⌃  │  ⌘  │     │   │  ←  │  ↓  │  ↑  │  →  │     │
 ├─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┤
 │     │     │COPY │PASTE│     │   │     │     │     │     │     │
 └─────┴─────┴─────┼─────┼─────┤   ├─────┼─────┼─────┴─────┴─────┘
@@ -88,7 +88,7 @@ NUM (numbers + function keys)
 ┌─────┬─────┬─────┬─────┬─────┐   ┌─────┬─────┬─────┬─────┬─────┐
 │ F1  │ F2  │ F3  │ F4  │ F5  │   │ F6  │ F7  │ F8  │ F9  │ F10 │
 ├─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┤
-│ALT/1│SFT/2│CTL/3│GUI/4│  5  │   │  6  │GUI/7│CTL/8│SFT/9│ALT/0│
+│ ⌥/1 │ ⇧/2 │ ⌃/3 │ ⌘/4 │  5  │   │  6  │ ⌘/7 │ ⌃/8 │ ⇧/9 │ ⌥/0 │
 ├─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┤
 │ F11 │     │     │     │     │   │     │     │     │     │ F12 │
 └─────┴─────┴─────┼─────┼─────┤   ├─────┼─────┼─────┴─────┴─────┘
@@ -99,16 +99,28 @@ MOUSE (mouse movement — right hand IJKL style)
 ┌─────┬─────┬─────┬─────┬─────┐   ┌─────┬─────┬─────┬─────┬─────┐
 │     │     │     │     │     │   │     │     │  ↑  │     │     │
 ├─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┤
-│ ALT │ SFT │ CTL │ GUI │SCRL │   │     │  ←  │  ↓  │  →  │     │
+│  ⌥  │  ⇧  │  ⌃  │  ⌘  │SCRL │   │     │  ←  │  ↓  │  →  │     │
 ├─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┤
 │     │     │     │     │     │   │     │     │     │     │     │
 └─────┴─────┴─────┼─────┼─────┤   ├─────┼─────┼─────┴─────┴─────┘
                   │RCLK │LCLK │   │     │     │
                   └─────┴─────┘   └─────┴─────┘
 
+SCROLL (hold SCRL on MOUSE layer — scroll with right hand IJKL)
+┌─────┬─────┬─────┬─────┬─────┐   ┌─────┬─────┬─────┬─────┬─────┐
+│     │     │     │     │     │   │     │     │ S↑  │     │     │
+├─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┤
+│  ⌥  │  ⇧  │  ⌃  │  ⌘  │(hld)│   │     │ S←  │ S↓  │ S→  │     │
+├─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┤
+│     │     │     │     │     │   │     │     │     │     │     │
+└─────┴─────┴─────┼─────┼─────┤   ├─────┼─────┼─────┴─────┴─────┘
+                  │RCLK │LCLK │   │     │     │
+                  └─────┴─────┘   └─────┴─────┘
+  Unlisted keys fall through to MOUSE.
+
 FUN (hold ENTER on NAV layer)
 ┌─────┬─────┬─────┬─────┬─────┐   ┌─────┬─────┬─────┬─────┬─────┐
-│ BT0 │     │PREV │NEXT │PLAY │   │ BT3 │     │     │USTCK│RESET│
+│ BT0 │ WIN │PREV │NEXT │PLAY │   │ BT3 │     │     │USTCK│RESET│
 ├─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┤
 │ BT1 │     │VOL- │VOL+ │MUTE │   │ BT4 │     │     │     │BOOT │
 ├─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┤
@@ -117,6 +129,12 @@ FUN (hold ENTER on NAV layer)
                   │     │     │   │     │     │
                   └─────┴─────┘   └─────┴─────┘
 ```
+
+### OS Mode
+
+COPY and PASTE on the NAV layer default to macOS shortcuts (Cmd+C / Cmd+V).
+Press **WIN** on the FUN layer to switch them to Windows/Linux shortcuts (Ctrl+C / Ctrl+V); press it again to switch back.
+The mode is not saved and resets to macOS after a reboot or deep sleep.
 
 ### Combos
 
@@ -131,7 +149,8 @@ FUN (hold ENTER on NAV layer)
 - **Hyper key** (Ctrl+Shift+Alt+GUI) on G and H
 - **Mouse keys** with movement and scroll layers
 - **FUN layer** accessed by holding ENTER while on NAV layer (SPACE → ENTER)
-- **Key repeat** on double-tap of any thumb key
+- **Key repeat** — tap a thumb key, then press and hold it within 200 ms to auto-repeat its tap key (e.g. Backspace)
+- **OS toggle** for copy/paste shortcuts (macOS ↔ Windows/Linux)
 - **Deep sleep** after 30 minutes of inactivity
 - **Bluetooth** with +8 dBm TX power for extended range
 
@@ -169,4 +188,7 @@ To clear Bluetooth bonds, flash `settings_reset.uf2` to both halves first.
 
 ## License
 
-Case designs and firmware configuration are provided as-is for personal use.
+- Firmware configuration and build scripts — [MIT](LICENSE)
+- Case designs (`case/`) and photos (`gallery/`) — [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+The Sweep PCB is a separate project; see the [upstream repository](https://github.com/davidphilipbarr/Sweep) for its license.

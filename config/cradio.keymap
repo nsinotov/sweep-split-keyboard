@@ -10,6 +10,8 @@
 #define MOUSE  4
 #define SCROLL 5
 #define FUN    6
+#define WIN    7  /* toggle flag: Windows/Linux mode (all transparent) */
+#define WINNAV 8  /* conditional: NAV + WIN → Ctrl-based copy/paste */
 
 #define U_MOUSE_MOVE_UP    0x0000FA24 /* MOVE_Y(-1500) */
 #define U_MOUSE_MOVE_DOWN  0x000005DC /* MOVE_Y(1500)  */
@@ -106,17 +108,14 @@
                  &kp LALT   &kp RALT
                  &kp LGUI   &kp RGUI>;
         };
+    };
 
-        paste: paste {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp LGUI>, <&macro_tap &kp V>, <&macro_release &kp LGUI>;
-        };
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
 
-        copy: copy {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp LGUI>, <&macro_tap &kp C>, <&macro_release &kp LGUI>;
+        win_nav {
+            if-layers = <NAV WIN>;
+            then-layer = <WINNAV>;
         };
     };
 
@@ -163,7 +162,7 @@
             bindings = <
                 &none    &none     &kp CAPS  &caps_word    &none     &kp HOME &kp PG_DN &kp PG_UP &kp END   &trans
                 &kp LALT &kp LSHIFT &kp LCTRL &kp LGUI    &none     &kp LEFT &kp DOWN  &kp UP    &kp RIGHT &trans
-                &none    &none     &copy     &paste        &none     &none    &none     &none     &none     &trans
+                &none    &none     &kp LG(C) &kp LG(V)     &none     &none    &none     &none     &none     &trans
                                               &none        &none     &mo FUN  &kp DEL
             >;
         };
@@ -197,10 +196,28 @@
 
         FUN {
             bindings = <
-                &bt BT_SEL 0 &none &kp C_PREV   &kp C_NEXT   &kp C_PP     &bt BT_SEL 3 &none &none &unstick &sys_reset
+                &bt BT_SEL 0 &tog WIN &kp C_PREV &kp C_NEXT &kp C_PP     &bt BT_SEL 3 &none &none &unstick &sys_reset
                 &bt BT_SEL 1 &none &kp C_VOL_DN &kp C_VOL_UP &kp C_MUTE   &bt BT_SEL 4 &none &none &none    &bootloader
                 &bt BT_SEL 2 &none &kp C_BRI_DN &kp C_BRI_UP &none        &bt BT_SEL 5 &none &none &none    &bt BT_CLR
                                                 &none        &none        &none        &none
+            >;
+        };
+
+        WIN {
+            bindings = <
+                &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans
+                                     &trans &trans    &trans &trans
+            >;
+        };
+
+        WINNAV {
+            bindings = <
+                &trans &trans &trans     &trans     &trans    &trans &trans &trans &trans &trans
+                &trans &trans &trans     &trans     &trans    &trans &trans &trans &trans &trans
+                &trans &trans &kp LC(C)  &kp LC(V)  &trans    &trans &trans &trans &trans &trans
+                                         &trans     &trans    &trans &trans
             >;
         };
     };
